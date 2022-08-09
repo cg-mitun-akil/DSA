@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\Arrays",
-    "\\Arrays\\Hard"
+    "\\Arrays\\Hard",
+    "\\Arrays\\Medium"
   ],
-  "SelectedNode": "\\Arrays\\Hard\\smallestMissingPositiveNumber.cpp",
+  "SelectedNode": "\\Arrays\\Hard\\bitmanipPairs.cpp",
   "PreviewInSolutionExplorer": false
 }
