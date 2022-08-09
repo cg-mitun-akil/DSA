@@ -2,8 +2,13 @@
   "ExpandedNodes": [
     "",
     "\\Arrays",
-    "\\Arrays\\Hard"
+    "\\Arrays\\Hard",
+    "\\Arrays\\Medium",
+    "\\Linked List",
+    "\\Linked List\\Doubly linked list",
+    "\\Linked List\\Doubly linked list\\Hard",
+    "\\Linked List\\Doubly linked list\\Medium",
+    "\\Stack"
   ],
-  "SelectedNode": "\\Arrays\\Hard\\smallestMissingPositiveNumber.cpp",
   "PreviewInSolutionExplorer": false
 }
