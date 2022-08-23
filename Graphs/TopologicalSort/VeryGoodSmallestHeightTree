@@ -1,0 +1,97 @@
+# [310\. Minimum Height Trees](https://leetcode.com/problems/minimum-height-trees/submissions/)
+
+## Description
+
+Difficulty: **Medium**  
+
+Related Topics: [Depth-First Search](https://leetcode.com/tag/depth-first-search/), [Breadth-First Search](https://leetcode.com/tag/breadth-first-search/), [Graph](https://leetcode.com/tag/graph/), [Topological Sort](https://leetcode.com/tag/topological-sort/)
+
+
+A tree is an undirected graph in which any two vertices are connected by _exactly_ one path. In other words, any connected graph without simple cycles is a tree.
+
+Given a tree of `n` nodes labelled from `0` to `n - 1`, and an array of `n - 1` `edges` where edges[i] = [a<sub>i</sub>, b<sub>i</sub>] indicates that there is an undirected edge between the two nodes a<sub>i</sub> and b<sub>i</sub> in the tree, you can choose any node of the tree as the root. When you select a node `x` as the root, the result tree has height `h`. Among all possible rooted trees, those with minimum height (i.e. `min(h)`)  are called **minimum height trees** (MHTs).
+
+Return _a list of all **MHTs'** root labels_. You can return the answer in **any order**.
+
+The **height** of a rooted tree is the number of edges on the longest downward path between the root and a leaf.
+
+**Example 1:**
+
+![](https://assets.leetcode.com/uploads/2020/09/01/e1.jpg)
+
+```
+Input: n = 4, edges = [[1,0],[1,2],[1,3]]
+Output: [1]
+Explanation: As shown, the height of the tree is 1 when the root is the node with label 1 which is the only MHT.
+```
+
+**Example 2:**
+
+![](https://assets.leetcode.com/uploads/2020/09/01/e2.jpg)
+
+```
+Input: n = 6, edges = [[3,0],[3,1],[3,2],[3,4],[5,4]]
+Output: [3,4]
+```
+
+**Constraints:**
+
+*   1 <= n <= 2 * 10<sup>4</sup>
+*   `edges.length == n - 1`
+*   0 <= a<sub>i</sub>, b<sub>i</sub> < n
+*   a<sub>i</sub> != b<sub>i</sub>
+*   All the pairs (a<sub>i</sub>, b<sub>i</sub>) are distinct.
+*   The given input is **guaranteed** to be a tree and there will be **no repeated** edges.
+
+
+## Solution
+
+Language: **C++**
+
+```c++
+class Solution {
+public:
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& preq ) {
+        unordered_map <int,int> deg ;
+        if( n == 1 )
+            return {0};
+        unordered_map < int , unordered_set<int> > adj;
+        queue <int> s;
+        for( int i = 0; i < preq.size() ; i++ )
+        {
+            deg[ preq[i][0] ]++;
+            deg[ preq[i][1] ]++;
+            adj[ preq[i][1] ].insert( preq[i][0] );
+            adj[ preq[i][0] ].insert( preq[i][1] );
+        }
+        for( int j = 0; j < n ; j++ )
+        {
+            if( deg[j] == 1 )
+            {
+                s.push( j );
+            }
+        }
+        while( n > 2 )
+        {
+            int size = s.size();
+            n = n - size;
+            for( int i = 0; i < size; i++ )
+            {
+                int a = s.front();
+                s.pop();
+                for( auto it = adj[a].begin() ; it != adj[a].end(); it++ )
+                {
+                    deg[*it]--;
+                    if( deg[*it] == 1 )
+                        s.push(*it);
+                }
+            }
+        }
+        int a = s.front();
+        s.pop();
+        if( s.size() == 1 )
+            return {a , s.front() };
+        return {a};
+    }
+};
+```
