@@ -8,7 +8,7 @@
 
 
 
-class Solution {
+class Solution {  //Joking
 public:
     int closestMeetingNode(vector<int>& edges, int node1, int node2) {
         
