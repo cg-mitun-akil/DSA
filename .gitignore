@@ -3,3 +3,9 @@
 ################################################################################
 
 *.opendb
+*.suo
+*.Browser.VC.db
+*.Browser.VC.db-shm
+*.slnx.sqlite
+*.VSWorkspaceState.json
+
